@@ -1,0 +1,18 @@
+.popup__close-button {
+  background: url(../../../images/cross-icon.svg) 0 0 no-repeat;
+  background-size: contain;
+  transform: rotate(45deg);
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+}
+
+@media (max-width: 560px) {
+  .popup__close-button {
+    width: 26px;
+    height: 26px;
+    right: 0;
+  }
+}

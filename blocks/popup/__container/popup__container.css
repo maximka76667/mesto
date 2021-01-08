@@ -1,0 +1,10 @@
+.popup__container {
+  width: 83.2558139535%;
+  margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  .popup__container {
+    width: 84.3971631206%;
+  }
+}

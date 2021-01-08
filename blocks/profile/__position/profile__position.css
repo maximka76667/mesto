@@ -1,0 +1,15 @@
+.profile__position {
+  font-size: 18px;
+  line-height: 1.2222222222;
+  grid-area: pos;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 500px) {
+  .profile__position {
+    font-size: 14px;
+    line-height: 1.214;
+  }
+}
