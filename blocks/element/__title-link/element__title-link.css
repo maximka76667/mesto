@@ -2,9 +2,9 @@
   max-width: calc(90% - 21px);
   text-decoration: none;
   color: #000;
-  transition: all 0.3s;
+  transition: all 0.2s ease;
 }
 
 .element__title-link:hover {
-  opacity: 0.6;
+  color: #00bfff;
 }
