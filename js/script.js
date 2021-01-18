@@ -19,8 +19,6 @@ let profilePosition = document.querySelector('.profile__position');
 let profileNameDefault = 'Ваше имя';
 let profilePositionDefault = 'Ваша должность';
 
-popupForm.addEventListener('submit', formSubmit);
-
 function formSubmit(event) {
     event.preventDefault();
     profileName.textContent = popupName.value;
@@ -28,19 +26,6 @@ function formSubmit(event) {
     checkEmpty();
     popup.classList.remove('popup_opened');
 }
-
-editButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  popup.classList.add('popup_opened');
-  popupName.value = profileName.innerHTML;
-  popupPosition.value = profilePosition.innerHTML;
-  checkDefault();
-})
-
-closeButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  popup.classList.remove('popup_opened');
-})
 
 function checkEmpty() {
   if(popupName.value == 0) { 
@@ -59,3 +44,18 @@ function checkDefault() {
     popupPosition.value = '';
   }
 }
+
+popupForm.addEventListener('submit', formSubmit);
+
+editButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  popup.classList.add('popup_opened');
+  popupName.value = profileName.innerHTML;
+  popupPosition.value = profilePosition.innerHTML;
+  checkDefault();
+})
+
+closeButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  popup.classList.remove('popup_opened');
+})
