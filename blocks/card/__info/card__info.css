@@ -1,6 +1,6 @@
-.element__info {
+.card__info {
   max-width: 87.2340425532%;
-  height: 80px;
+  padding: calc((80px - 29px) / 2) 0;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

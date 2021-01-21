@@ -1,4 +1,4 @@
-.elements__container {
+.cards__container {
   width: 68.75%;
   margin: 0 auto;
   display: grid;
@@ -9,17 +9,17 @@
 }
 
 @media (max-width: 1060px) {
-  .elements__container {
+  .cards__container {
     grid-template-columns: repeat(2, calc((100% - 17px) / 2));
   }
 }
 @media (max-width: 715px) {
-  .elements__container {
+  .cards__container {
     grid-template-columns: 1fr;
   }
 }
 @media (max-width: 500px) {
-  .elements__container {
+  .cards__container {
     width: 88.125%;
   }
 }

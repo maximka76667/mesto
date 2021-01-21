@@ -14,80 +14,77 @@
   </header>
   <div class="profile">
     <div class="profile__container">
-      <a href="#" class="profile__avatar" target="_blank"></a>
+      <img src="./images/profile-avatar.jpg" class="profile__avatar" alt="Аватар профиля">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <a href="#" class="profile__edit-button" target="_self"></a>
+        <button class="profile__edit-button" type="button"></button>
         <p class="profile__position">Исследователь океана</p>
       </div>
-      <a href="#" class="profile__add-button" target="_self"></a>
+      <button class="profile__add-button" type="button"></button>
     </div>
   </div>
-  <div class="elements">
-    <div class="elements__container">
-      <div class="element">
-        <a href="#" class="element__image element__image_place_karach" target="_blank"></a>
-        <div class="element__info">
-          <a href="#" class="element__title-link" target="_blank"><p class="element__title">Карачаевск</p></a>
-          <a href="#" class="element__like-button" target="_self"></a>
+  <div class="cards">
+    <div class="cards__container">
+      <article class="card">
+        <div class="card__image card__image_place_karach"></div>
+        <div class="card__info">
+          <h2 class="card__title">Карачаевск</h2>
+          <button class="card__like-button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
-        <a href="#" class="element__image element__image_place_elbrus" target="_blank"></a>
-        <div class="element__info">
-          <a href="#" class="element__title-link" target="_blank"><p class="element__title">Гора Эльбрус</p></a>
-          <a href="#" class="element__like-button" target="_self"></a>
+      </article>
+      <article class="card">
+        <div class="card__image card__image_place_elbrus"></div>
+        <div class="card__info">
+          <h2 class="card__title">Гора Эльбрус</h2>
+          <button class="card__like-button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
-        <a href="#" class="element__image element__image_place_dombai" target="_blank"></a>
-        <div class="element__info">
-          <a href="#" class="element__title-link" target="_blank"><p class="element__title">Домбай</p></a>
-          <a href="#" class="element__like-button" target="_self"></a>
+      </article>
+      <article class="card">
+        <div class="card__image card__image_place_dombai"></div>
+        <div class="card__info">
+          <h2 class="card__title">Домбай</h2>
+          <button class="card__like-button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
-        <a href="#" class="element__image element__image_place_elbrus" target="_blank"></a>
-        <div class="element__info">
-          <a href="#" class="element__title-link" target="_blank"><p class="element__title">Гора Эльбрус</p></a>
-          <a href="#" class="element__like-button" target="_self"></a>
+      </article>
+      <article class="card">
+        <div class="card__image card__image_place_elbrus"></div>
+        <div class="card__info">
+          <h2 class="card__title">Гора Эльбрус</h2>
+          <button class="card__like-button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
-        <a href="#" class="element__image element__image_place_dombai" target="_blank"></a>
-        <div class="element__info">
-          <a href="#" class="element__title-link" target="_blank"><p class="element__title">Домбай</p></a>
-          <a href="#" class="element__like-button" target="_self"></a>
+      </article>
+      <article class="card">
+        <div class="card__image card__image_place_dombai"></div>
+        <div class="card__info">
+          <h2 class="card__title">Домбай</h2>
+          <button class="card__like-button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
-        <a href="#" class="element__image element__image_place_karach" target="_blank"></a>
-        <div class="element__info">
-          <a href="#" class="element__title-link" target="_blank"><p class="element__title">Карачаево-Черкесия</p></a>
-          <a href="#" class="element__like-button" target="_self"></a>
+      </article>
+      <article class="card">
+        <div class="card__image card__image_place_karach"></div>
+        <div class="card__info">
+          <h2 class="card__title">Карачаево-Черкесия</h2>
+          <button class="card__like-button" type="button"></button>
         </div>
-      </div>
-      
+      </article>
     </div>
   </div>
   <footer class="footer">
     <div class="footer__container">
-      <p class="footer__copyright">© 2020. <a href="#" class="footer__author-link" target="_blank">Максим Гривенный</a></p>
+      <p class="footer__copyright">© 2020. Максим Гривенный</p>
     </div>
   </footer>
   <div class="popup">
-    <div class="popup__container-wrapper">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input class="popup__input popup__input_type_name" type="text" name="name" id="name" placeholder="Ваше имя">
-          <input class="popup__input popup__input_type_position" type="text" name="position" id="position" placeholder="Ваша должность">
+        <form class="popup__form" name="popupForm">
+          <input class="popup__input popup__input_type_name" type="text" name="name" id="name" placeholder="Ваше имя" required>
+          <input class="popup__input popup__input_type_position" type="text" name="position" id="position" placeholder="Ваша должность" required>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
+        <button class="popup__close-button" type="button"></button>
       </div>
-      <div class="popup__close-button"></div>
-    </div>
   </div>
-  <script src="./js/script.js"></script>
+  <script src="./js/index.js"></script>
 </body>
 </html>
