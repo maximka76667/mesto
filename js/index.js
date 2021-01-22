@@ -7,8 +7,6 @@ let popupName = document.querySelector('.popup__input_type_name');
 let popupPosition = document.querySelector('.popup__input_type_position');
 let profileName = document.querySelector('.profile__name');
 let profilePosition = document.querySelector('.profile__position');
-let profileNameDefault = 'Ваше имя';
-let profilePositionDefault = 'Ваша должность';
 
 function formSubmit(event) {
   event.preventDefault();
