@@ -25,48 +25,7 @@
   </div>
   <div class="cards">
     <div class="cards__container">
-      <article class="card">
-        <img src="./images/cards-karach.jpg" alt="Карачаевск" class="card__image">
-        <div class="card__info">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/cards-elbrus.jpg" alt="Эльбрус" class="card__image">
-        <div class="card__info">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/cards-dombai.jpg" alt="Домбай" class="card__image">
-        <div class="card__info">
-          <h2 class="card__title">Домбай</h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/cards-elbrus.jpg" alt="Эльбрус" class="card__image">
-        <div class="card__info">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/cards-dombai.jpg" alt="Домбай" class="card__image">
-        <div class="card__info">
-          <h2 class="card__title">Домбай</h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/cards-karach.jpg" alt="Карачаево-Черкесия" class="card__image">
-        <div class="card__info">
-          <h2 class="card__title">Карачаево-Черкесия</h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-      </article>
+      
     </div>
   </div>
   <footer class="footer">
@@ -74,17 +33,28 @@
       <p class="footer__copyright">© 2020. Максим Гривенный</p>
     </div>
   </footer>
-  <div class="popup">
+  <template id="card">
+    <article class="card">
+      <img src="" alt="Фото карточки" class="card__image">
+      <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button class="card__like-button" type="button"></button>
+      </div>
+    </article>
+  </template>
+  <template id="popup">
+    <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="popupForm">
           <input class="popup__input popup__input_type_name" type="text" name="name" id="name" placeholder="Ваше имя" required>
           <input class="popup__input popup__input_type_position" type="text" name="position" id="position" placeholder="Ваша должность" required>
-          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button"></button>
       </div>
-  </div>
+    </div>
+  </template>
   <script src="./js/index.js"></script>
 </body>
 </html>
