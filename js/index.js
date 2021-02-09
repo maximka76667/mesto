@@ -13,7 +13,7 @@ let profilePosition = document.querySelector('.profile__position');
 const imgPopup = document.querySelector('.img-popup');
 let imgPopupTitle = document.querySelector('.img-popup__title');
 let imgPopupImage = document.querySelector('.img-popup__image');
-let imgPopupCloseButton = document.querySelector('.img-popup__close-button');
+const imgPopupCloseButton = document.querySelector('.img-popup__close-button');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
 const initialCards = [
@@ -88,9 +88,7 @@ function openImgPopup(event) {
   event.preventDefault();
 
   imgPopupTitle.textContent = event.target.alt;
-
-  imgPopupImage.alt = event.target.alt
-  console.log(event.target.src);
+  imgPopupImage.alt = event.target.alt;
   imgPopupImage.src = event.target.src;
   imgPopupCloseButton.addEventListener('click', closeImgPopup);
 
@@ -99,9 +97,12 @@ function openImgPopup(event) {
 
 function closeImgPopup(event) {
   imgPopup.classList.remove('img-popup_opened');
+  imgPopupTitle.textContent = '';
+  imgPopupImage.alt = '';
+  imgPopupImage.src = '';
 }
 
-function formSubmit(event) {
+function submitForm(event) {
   event.preventDefault();
   if(event.target.textContent.trim() == popupTypeEdit.submit) {
     profileName.textContent = popupName.value;
@@ -145,4 +146,4 @@ initialCards.forEach(initializeCards);
 editButton.addEventListener('click', openPopup);
 addButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-submitButton.addEventListener('click', formSubmit);
+submitButton.addEventListener('click', submitForm);
