@@ -1,12 +1,11 @@
-.popup {
+.img-popup {
   display: none;
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   align-items: center;
   justify-content: center;
-  transition: all 1s;
 }

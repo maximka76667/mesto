@@ -12,8 +12,10 @@
 @import url(../blocks/popup/popup.css);
 
 /* Elements */
+/* Header container styles */
 @import url(../blocks/header/__container/header__container.css);
 
+/* Profile styles */
 @import url(../blocks/profile/__container/profile__container.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
@@ -22,18 +24,22 @@
 @import url(../blocks/profile/__position/profile__position.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 
+/* Cards container styles */
 @import url(../blocks/cards/__container/cards__container.css);
 
+/* Card styles */
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__info/card__info.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__like-button/card__like-button.css);
 @import url(../blocks/card/__delete-button/card__delete-button.css);
 
+/* Footer styles */
 @import url(../blocks/footer/__container/footer__container.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/footer/__author-link/footer__author-link.css);
 
+/* Popup styles */
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__form/popup__form.css);
@@ -41,6 +47,14 @@
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
+/* ImgPopup styles */
+@import url(../blocks/img-popup/img-popup.css);
+@import url(../blocks/img-popup/__container/img-popup__container.css);
+@import url(../blocks/img-popup/__image/img-popup__image.css);
+@import url(../blocks/img-popup/__close-button/img-popup__close-button.css);
+@import url(../blocks/img-popup/__title/img-popup__title.css);
+
 /* Modifiers */
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/img-popup/_opened/img-popup_opened.css);
 @import url(../blocks/card/__like-button/_active/card__like-button_active.css);
