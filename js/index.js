@@ -57,21 +57,6 @@ const popupTypeAdd = {
   submit: 'Создать'
 };
 
-function formSubmit(event) {
-  event.preventDefault();
-  if(event.target.textContent.trim() == popupTypeEdit.submit) {
-    profileName.textContent = popupName.value;
-    profilePosition.textContent = popupPosition.value;
-  }
-  if(event.target.textContent.trim() == popupTypeAdd.submit) {
-    addCard({
-      name: popupName.value,
-      link: popupPosition.value
-    });
-  }
-  closePopup();
-}
-
 function openPopup(event) {
   event.preventDefault();
 
@@ -95,6 +80,10 @@ function openPopup(event) {
   popup.classList.add('popup_opened');
 }
 
+function closePopup(event) {
+  popup.classList.remove('popup_opened');
+}
+
 function openImgPopup(event) {
   event.preventDefault();
 
@@ -112,12 +101,27 @@ function closeImgPopup(event) {
   imgPopup.classList.remove('img-popup_opened');
 }
 
-function closePopup(event) {
-  popup.classList.remove('popup_opened');
+function formSubmit(event) {
+  event.preventDefault();
+  if(event.target.textContent.trim() == popupTypeEdit.submit) {
+    profileName.textContent = popupName.value;
+    profilePosition.textContent = popupPosition.value;
+  }
+  if(event.target.textContent.trim() == popupTypeAdd.submit) {
+    addCard({
+      name: popupName.value,
+      link: popupPosition.value
+    });
+  }
+  closePopup();
 }
 
 function addCard(card) {
   cardsContainer.prepend(createCard(card));
+}
+
+function initializeCards(initialCard) {
+  cardsContainer.append(createCard(initialCard));
 }
 
 function createCard(card) {
@@ -135,10 +139,6 @@ function createCard(card) {
   })
 
   return cardElement;
-}
-
-function initializeCards(initialCard) {
-  cardsContainer.append(createCard(initialCard));
 }
 
 initialCards.forEach(initializeCards);
