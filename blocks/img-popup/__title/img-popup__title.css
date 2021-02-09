@@ -4,4 +4,15 @@
   color: #fff;
   margin: 10px 0 0;
   font-weight: normal;
+  max-width: 290px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 500px) {
+  
+  .img-popup__title{
+    max-width: 240px;
+  }
 }

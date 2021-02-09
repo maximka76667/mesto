@@ -3,16 +3,16 @@ const editButton = document.querySelector('.profile__edit-button');
 const submitButton = document.querySelector('.popup__submit-button');
 const closeButton = document.querySelector('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
-let popup = document.querySelector('.popup');
-let popupTitle = document.querySelector('.popup__title');
-let popupName = document.querySelector('.popup__input_type_name');
-let popupPosition = document.querySelector('.popup__input_type_position');
-let popupForm = document.querySelector('.popup__form');
-let profileName = document.querySelector('.profile__name');
-let profilePosition = document.querySelector('.profile__position');
+const popup = document.querySelector('.popup');
+const popupTitle = document.querySelector('.popup__title');
+const popupName = document.querySelector('.popup__input_type_name');
+const popupPosition = document.querySelector('.popup__input_type_position');
+const popupForm = document.querySelector('.popup__form');
+const profileName = document.querySelector('.profile__name');
+const profilePosition = document.querySelector('.profile__position');
 const imgPopup = document.querySelector('.img-popup');
-let imgPopupTitle = document.querySelector('.img-popup__title');
-let imgPopupImage = document.querySelector('.img-popup__image');
+const imgPopupTitle = document.querySelector('.img-popup__title');
+const imgPopupImage = document.querySelector('.img-popup__image');
 const imgPopupCloseButton = document.querySelector('.img-popup__close-button');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
@@ -87,9 +87,11 @@ function closePopup(event) {
 function openImgPopup(event) {
   event.preventDefault();
 
-  imgPopupTitle.textContent = event.target.alt;
-  imgPopupImage.alt = event.target.alt;
-  imgPopupImage.src = event.target.src;
+  const popupImg = event.target;
+
+  imgPopupTitle.textContent = popupImg.alt;
+  imgPopupImage.alt = popupImg.alt;
+  imgPopupImage.src = popupImg.src;
   imgPopupCloseButton.addEventListener('click', closeImgPopup);
 
   imgPopup.classList.add('img-popup_opened');
