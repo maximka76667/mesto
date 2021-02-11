@@ -1,4 +1,4 @@
-.img-popup__title {
+.popup__title_type_image {
   font-size: 12px;
   line-height: 15px;
   color: #fff;
@@ -11,8 +11,7 @@
 }
 
 @media (max-width: 500px) {
-  
-  .img-popup__title{
+  .popup__title_type_image {
     max-width: 240px;
   }
 }

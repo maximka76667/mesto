@@ -43,24 +43,38 @@
       </div>
     </article>
   </template>
-  <div class="popup">
+  <div class="popup popup_type_editing">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="popupForm">
-        <input class="popup__input popup__input_type_name" type="text" name="name" id="name" placeholder="Ваше имя" required>
-        <input class="popup__input popup__input_type_position" type="text" name="position" id="position" placeholder="Ваша должность" required>
+        <input class="popup__input popup__input_type_name" type="text" name="profileName" id="profileName" placeholder="Ваше имя" required>
+        <input class="popup__input popup__input_type_position" type="text" name="profilePosition" id="profilePosition" placeholder="Ваша должность" required>
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>
-  <div class="img-popup">
-    <div class="img-popup__container">
-      <img src="./" alt="Фото карточки" class="img-popup__image">
-      <h2 class="img-popup__title"></h2>
-      <button class="img-popup__close-button" type="button"></button>
+
+  <div class="popup popup_type_addition">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="popupForm">
+        <input class="popup__input popup__input_type_name" type="text" name="placeName" id="placeName" placeholder="Название" required>
+        <input class="popup__input popup__input_type_link" type="text" name="placeLink" id="placeLink" placeholder="Ссылка на картинку" required>
+        <button class="popup__submit-button" type="submit">Создать</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
     </div>
   </div>
+  
+  <div class="popup popup_type_image">
+    <div class="popup__container popup__container_type_image">
+      <img src="./" alt="Фото карточки" class="popup__image">
+      <h2 class="popup__title popup__title_type_image"></h2>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+  <script src="./js/init.js"></script>
   <script src="./js/index.js"></script>
 </body>
 </html>
