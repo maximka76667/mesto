@@ -1,4 +1,3 @@
-const page = document.querySelector('.page');
 const editingButton = document.querySelector('.profile__edit-button');
 const submitButton = document.querySelector('.popup__submit-button');
 const additionButton = document.querySelector('.profile__add-button');
@@ -39,6 +38,9 @@ function openEditingPopup() {
 }
 
 function openAdditionPopup() {
+  additionPopupName.value = '';
+  additionPopupLink.value = '';
+
   openPopup(additionPopup);
 }
 
@@ -60,17 +62,10 @@ function closeEditingPopup() {
 
 function closeAdditionPopup() {
   closePopup(additionPopup);
-
-  additionPopupName.value = '';
-  additionPopupLink.value = '';
 }
 
 function closeImgPopup() {
   closePopup(imgPopup);
-
-  imgPopupTitle.textContent = '';
-  imgPopupImage.alt = '';
-  imgPopupImage.src = '';
 }
 
 function submitEditingForm(event) {
