@@ -18,16 +18,11 @@ const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
+const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
+const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
 
 function openPopup(popup) {
   document.addEventListener('keydown', keyHandler);
-
-  const overlay = popup.querySelector('.popup__overlay');
-  overlay.addEventListener('click', () => closePopup(popup));
-
-  const closeButton = popup.querySelector('.popup__close-button');
-  closeButton.addEventListener('click', () => closePopup(popup));
-
   popup.classList.add('popup_opened');
 }
 
@@ -89,7 +84,8 @@ function submitAdditionForm(event) {
   closePopup(additionPopup);
 
   additionPopupForm.reset();
-  toggleButtonState(additionPopup.querySelector('.popup__submit-button'), 'popup__submit-button_disabled', true);
+  const submitButton = additionPopup.querySelector(validationConfig.submitButtonSelector);
+  toggleButtonState(submitButton, validationConfig.inactiveButtonClass, true);
 }
 
 function createCard(card) {
@@ -119,6 +115,10 @@ function initializeCards(initialCard) {
   cardsContainer.append(createCard(initialCard));
 }
 
+function setCloseEventListeners(element) {
+  element.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
+}
+
 initialCards.forEach(initializeCards);
 
 editingButton.addEventListener('click', openEditingPopup);
@@ -126,3 +126,6 @@ additionButton.addEventListener('click', openAdditionPopup);
 
 editingPopupForm.addEventListener('submit', submitEditingForm);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
+
+overlays.forEach((element) => setCloseEventListeners(element));
+closeButtons.forEach((element) => setCloseEventListeners(element));
