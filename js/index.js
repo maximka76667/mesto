@@ -31,14 +31,15 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keyHandler);
+}
+
 function keyHandler(event) {
   if(event.key == 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
   }
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
 }
 
 function openEditingPopup() {
@@ -49,6 +50,8 @@ function openEditingPopup() {
 }
 
 function openAdditionPopup() {
+  additionPopupForm.reset();
+
   openPopup(additionPopup);
 }
 
@@ -86,14 +89,7 @@ function submitAdditionForm(event) {
   closePopup(additionPopup);
 
   additionPopupForm.reset();
-}
-
-function addCard(card) {
-  cardsContainer.prepend(createCard(card));
-}
-
-function initializeCards(initialCard) {
-  cardsContainer.append(createCard(initialCard));
+  toggleButtonState(additionPopup.querySelector('.popup__submit-button'), 'popup__submit-button_disabled', true);
 }
 
 function createCard(card) {
@@ -113,6 +109,14 @@ function createCard(card) {
   })
 
   return cardElement;
+}
+
+function addCard(card) {
+  cardsContainer.prepend(createCard(card));
+}
+
+function initializeCards(initialCard) {
+  cardsContainer.append(createCard(initialCard));
 }
 
 initialCards.forEach(initializeCards);
