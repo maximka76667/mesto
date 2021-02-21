@@ -127,5 +127,5 @@ additionButton.addEventListener('click', openAdditionPopup);
 editingPopupForm.addEventListener('submit', submitEditingForm);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
 
-overlays.forEach((element) => setCloseEventListeners(element));
-closeButtons.forEach((element) => setCloseEventListeners(element));
+overlays.forEach(setCloseEventListeners);
+closeButtons.forEach(setCloseEventListeners);
