@@ -6,7 +6,6 @@ const editingPopupTitle = editingPopup.querySelector('.popup__title');
 const editingPopupName = editingPopup.querySelector('.popup__input_type_name');
 const editingPopupPosition = editingPopup.querySelector('.popup__input_type_position');
 const editingPopupForm = editingPopup.querySelector('.popup__form');
-const closeEditingPopupButton = editingPopup.querySelector('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profilePosition = document.querySelector('.profile__position');
 const additionPopup = document.querySelector('.popup_type_addition');
@@ -14,19 +13,28 @@ const additionPopupTitle = additionPopup.querySelector('.popup__title');
 const additionPopupName = additionPopup.querySelector('.popup__input_type_name');
 const additionPopupLink = additionPopup.querySelector('.popup__input_type_link');
 const additionPopupForm = additionPopup.querySelector('.popup__form');
-const closeAdditionPopupButton = additionPopup.querySelector('.popup__close-button');
 const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
-const closeImgPopupButton = imgPopup.querySelector('.popup__close-button');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
-const editingPopupOverlay = editingPopup.querySelector('.popup__overlay');
-const additionPopupOverlay = additionPopup.querySelector('.popup__overlay');
-const imgPopupOverlay = imgPopup.querySelector('.popup__overlay');
 
 function openPopup(popup) {
+  document.addEventListener('keydown', keyHandler);
+
+  const overlay = popup.querySelector('.popup__overlay');
+  overlay.addEventListener('click', () => closePopup(popup));
+
+  const closeButton = popup.querySelector('.popup__close-button');
+  closeButton.addEventListener('click', () => closePopup(popup));
+
   popup.classList.add('popup_opened');
+}
+
+function keyHandler(event) {
+  if(event.key == 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
 }
 
 function closePopup(popup) {
@@ -41,9 +49,6 @@ function openEditingPopup() {
 }
 
 function openAdditionPopup() {
-  // additionPopupName.value = '';
-  // additionPopupLink.value = '';
-
   openPopup(additionPopup);
 }
 
@@ -57,18 +62,6 @@ function openImgPopup(event) {
   imgPopupImage.src = popupImg.src;
 
   openPopup(imgPopup);
-}
-
-function closeEditingPopup() {
-  closePopup(editingPopup);
-}
-
-function closeAdditionPopup() {
-  closePopup(additionPopup);
-}
-
-function closeImgPopup() {
-  closePopup(imgPopup);
 }
 
 function submitEditingForm(event) {
@@ -122,44 +115,10 @@ function createCard(card) {
   return cardElement;
 }
 
-// function setPopupListeners() {
-//   const popupList = Array.from(document.querySelectorAll('.popup'));
-  
-//   popupList.forEach((popup) => {
-//     const closeButton = popup.querySelector('.popup__close-button');
-//     closeButton.addEventListener('click', closePopup);
-//   })
-// }
-
 initialCards.forEach(initializeCards);
+
 editingButton.addEventListener('click', openEditingPopup);
 additionButton.addEventListener('click', openAdditionPopup);
-
-document.addEventListener('keydown', function(event) {
-  if(event.key == 'Escape') {
-    closeEditingPopup();
-  }
-});
-
-document.addEventListener('keydown', function(event) {
-  if(event.key == 'Escape') {
-    closeAdditionPopup();
-  }
-});
-
-document.addEventListener('keydown', function(event) {
-  if(event.key == 'Escape') {
-    closeImgPopup();
-  }
-});
-
-closeEditingPopupButton.addEventListener('click', closeEditingPopup);
-closeAdditionPopupButton.addEventListener('click', closeAdditionPopup);
-closeImgPopupButton.addEventListener('click', closeImgPopup);
-
-editingPopupOverlay.addEventListener('click', closeEditingPopup);
-additionPopupOverlay.addEventListener('click', closeAdditionPopup);
-imgPopupOverlay.addEventListener('click', closeImgPopup);
 
 editingPopupForm.addEventListener('submit', submitEditingForm);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
