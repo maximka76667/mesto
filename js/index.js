@@ -21,6 +21,9 @@ const imgPopupImage = imgPopup.querySelector('.popup__image');
 const closeImgPopupButton = imgPopup.querySelector('.popup__close-button');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
+const editingPopupOverlay = editingPopup.querySelector('.popup__overlay');
+const additionPopupOverlay = additionPopup.querySelector('.popup__overlay');
+const imgPopupOverlay = imgPopup.querySelector('.popup__overlay');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -38,8 +41,8 @@ function openEditingPopup() {
 }
 
 function openAdditionPopup() {
-  additionPopupName.value = '';
-  additionPopupLink.value = '';
+  // additionPopupName.value = '';
+  // additionPopupLink.value = '';
 
   openPopup(additionPopup);
 }
@@ -75,6 +78,8 @@ function submitEditingForm(event) {
   profilePosition.textContent = editingPopupPosition.value;
 
   closePopup(editingPopup);
+
+  editingPopupForm.reset();
 }
 
 function submitAdditionForm(event) {
@@ -86,6 +91,8 @@ function submitAdditionForm(event) {
   });
 
   closePopup(additionPopup);
+
+  additionPopupForm.reset();
 }
 
 function addCard(card) {
@@ -115,13 +122,44 @@ function createCard(card) {
   return cardElement;
 }
 
+// function setPopupListeners() {
+//   const popupList = Array.from(document.querySelectorAll('.popup'));
+  
+//   popupList.forEach((popup) => {
+//     const closeButton = popup.querySelector('.popup__close-button');
+//     closeButton.addEventListener('click', closePopup);
+//   })
+// }
+
 initialCards.forEach(initializeCards);
 editingButton.addEventListener('click', openEditingPopup);
 additionButton.addEventListener('click', openAdditionPopup);
 
+document.addEventListener('keydown', function(event) {
+  if(event.key == 'Escape') {
+    closeEditingPopup();
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+  if(event.key == 'Escape') {
+    closeAdditionPopup();
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+  if(event.key == 'Escape') {
+    closeImgPopup();
+  }
+});
+
 closeEditingPopupButton.addEventListener('click', closeEditingPopup);
 closeAdditionPopupButton.addEventListener('click', closeAdditionPopup);
 closeImgPopupButton.addEventListener('click', closeImgPopup);
+
+editingPopupOverlay.addEventListener('click', closeEditingPopup);
+additionPopupOverlay.addEventListener('click', closeAdditionPopup);
+imgPopupOverlay.addEventListener('click', closeImgPopup);
 
 editingPopupForm.addEventListener('submit', submitEditingForm);
 additionPopupForm.addEventListener('submit', submitAdditionForm);

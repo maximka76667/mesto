@@ -8,8 +8,5 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
-}
-
-.popup__input:not(:last-of-type) {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
