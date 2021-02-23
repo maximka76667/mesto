@@ -40,12 +40,16 @@ function keyHandler(event) {
 function openEditingPopup() {
   editingPopupName.value = profileName.textContent;
   editingPopupPosition.value = profilePosition.textContent;
+  clearValidation(editingPopup, validationConfig.inputSelector, validationConfig.inputErrorClass, validationConfig.errorClass);
 
   openPopup(editingPopup);
 }
 
 function openAdditionPopup() {
   additionPopupForm.reset();
+  const submitButton = additionPopup.querySelector(validationConfig.submitButtonSelector);
+  toggleButtonState(submitButton, validationConfig.inactiveButtonClass, true);
+  clearValidation(additionPopup, validationConfig.inputSelector, validationConfig.inputErrorClass, validationConfig.errorClass);
 
   openPopup(additionPopup);
 }

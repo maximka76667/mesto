@@ -37,6 +37,15 @@ const toggleButtonState = (buttonElement, inactiveButtonClass, isValid) => {
   }
 };
 
+function clearValidation(popupElement, inputSelector, inputErrorClass, errorClass) {
+  const formElement = popupElement.querySelector('.popup__form');
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+
+  inputList.forEach((inputElement) => {
+    hideInputError({formElement, inputElement, inputErrorClass, errorClass});
+  })
+}
+
 const setEventListeners = ({formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector))
   const buttonElement = formElement.querySelector(submitButtonSelector);
