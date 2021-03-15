@@ -1,3 +1,5 @@
+import { Card } from './Card.js'
+
 const editingButton = document.querySelector('.profile__edit-button');
 const submitButton = document.querySelector('.popup__submit-button');
 const additionButton = document.querySelector('.profile__add-button');
@@ -13,13 +15,10 @@ const additionPopupTitle = additionPopup.querySelector('.popup__title');
 const additionPopupName = additionPopup.querySelector('.popup__input_type_name');
 const additionPopupLink = additionPopup.querySelector('.popup__input_type_link');
 const additionPopupForm = additionPopup.querySelector('.popup__form');
-const imgPopup = document.querySelector('.popup_type_image');
-const imgPopupTitle = imgPopup.querySelector('.popup__title');
-const imgPopupImage = imgPopup.querySelector('.popup__image');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
-const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
-const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
+// const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
+// const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
 
 function openPopup(popup) {
   document.addEventListener('keydown', keyHandler);
@@ -92,38 +91,43 @@ function submitAdditionForm(event) {
   toggleButtonState(submitButton, validationConfig.inactiveButtonClass, true);
 }
 
-function createCard(card) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+// function createCard(card) {
+//   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
 
-  const cardImage = cardElement.querySelector('.card__image');
+//   const cardImage = cardElement.querySelector('.card__image');
 
-  cardElement.querySelector('.card__title').textContent = card.name;
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
-  cardImage.addEventListener('click', openImgPopup);
-  cardElement.querySelector('.card__delete-button').addEventListener('click', function(event) {
-    cardElement.remove();
-  })
-  cardElement.querySelector('.card__like-button').addEventListener('click', function(event) {
-    cardElement.querySelector('.card__like-button').classList.toggle('card__like-button_active');
-  })
+//   cardElement.querySelector('.card__title').textContent = card.name;
+//   cardImage.src = card.link;
+//   cardImage.alt = card.name;
+//   cardImage.addEventListener('click', openImgPopup);
+//   cardElement.querySelector('.card__delete-button').addEventListener('click', function(event) {
+//     cardElement.remove();
+//   })
+//   cardElement.querySelector('.card__like-button').addEventListener('click', function(event) {
+//     cardElement.querySelector('.card__like-button').classList.toggle('card__like-button_active');
+//   })
 
-  return cardElement;
-}
+//   return cardElement;
+// }
 
-function addCard(card) {
-  cardsContainer.prepend(createCard(card));
-}
+// function addCard(card) {
+//   cardsContainer.prepend(createCard(card));
+// }
 
-function initializeCards(initialCard) {
-  cardsContainer.append(createCard(initialCard));
-}
+// function initializeCards(initialCard) {
+  
+// }
 
 function setCloseEventListeners(element) {
   element.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
 }
 
-initialCards.forEach(initializeCards);
+initialCards.forEach((initialCard) => {
+  const card = new Card(initialCard.name, initialCard.link, '#card');
+  const cardElement = card.generateCard();
+
+  cardsContainer.append(cardElement);
+});
 
 editingButton.addEventListener('click', openEditingPopup);
 additionButton.addEventListener('click', openAdditionPopup);
@@ -131,5 +135,5 @@ additionButton.addEventListener('click', openAdditionPopup);
 editingPopupForm.addEventListener('submit', submitEditingForm);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
 
-overlays.forEach(setCloseEventListeners);
-closeButtons.forEach(setCloseEventListeners);
+// overlays.forEach(setCloseEventListeners);
+// closeButtons.forEach(setCloseEventListeners);
