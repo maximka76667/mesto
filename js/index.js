@@ -17,8 +17,8 @@ const additionPopupLink = additionPopup.querySelector('.popup__input_type_link')
 const additionPopupForm = additionPopup.querySelector('.popup__form');
 const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#card').content;
-// const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
-// const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
+const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
+const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
 
 function openPopup(popup) {
   document.addEventListener('keydown', keyHandler);
@@ -110,23 +110,23 @@ function submitAdditionForm(event) {
 //   return cardElement;
 // }
 
-// function addCard(card) {
-//   cardsContainer.prepend(createCard(card));
-// }
+function createCard(cardData) {
+  const card = new Card(cardData.name, cardData.link, '#card');
+  const cardElement = card.generateCard();
 
-// function initializeCards(initialCard) {
-  
-// }
+  return cardElement;
+}
+
+function addCard(card) {
+  cardsContainer.prepend(createCard(card));
+}
 
 function setCloseEventListeners(element) {
   element.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
 }
 
 initialCards.forEach((initialCard) => {
-  const card = new Card(initialCard.name, initialCard.link, '#card');
-  const cardElement = card.generateCard();
-
-  cardsContainer.append(cardElement);
+  cardsContainer.append(createCard(initialCard));
 });
 
 editingButton.addEventListener('click', openEditingPopup);
@@ -135,5 +135,5 @@ additionButton.addEventListener('click', openAdditionPopup);
 editingPopupForm.addEventListener('submit', submitEditingForm);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
 
-// overlays.forEach(setCloseEventListeners);
-// closeButtons.forEach(setCloseEventListeners);
+overlays.forEach((overlay) => setCloseEventListeners(overlay));
+closeButtons.forEach((closeButton) => setCloseEventListeners(closeButton));

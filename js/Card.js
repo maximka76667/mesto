@@ -18,11 +18,8 @@ export class Card {
     this._deleteButton = this._element.querySelector('.card__delete-button');
     this._deleteButton.addEventListener('click', () => this._delete());
 
-    this._element
-    .querySelector('.card__image')
-    .addEventListener('click', () => this._handleOpenPopup())
-
-    closeButton.addEventListener('click', () => this._handleClosePopup())
+    this._image = this._element.querySelector('.card__image');
+    this._image.addEventListener('click', () => this._handleOpenPopup());
   }
 
   _delete() {
@@ -31,20 +28,27 @@ export class Card {
 
   _like() {
     this.isLiked = !this.isLiked;
-    
     this._likeButton.classList.toggle('card__like-button_active');
   }
 
   _handleOpenPopup() {
     imgPopupImage.src = this._link;
     imgPopupTitle.textContent = this._name;
+    document.addEventListener('keydown', (event) => this._keyHandler(event));
     imgPopup.classList.add('popup_opened');
   }
 
   _handleClosePopup() {
+    imgPopup.classList.remove('popup_opened');
     imgPopupImage.src = '';
     imgPopupTitle.textContent = '';
-    imgPopup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', (event) => this._keyHandler(event));
+  }
+
+  _keyHandler(event) {
+    if(event.key == 'Escape') {
+      this._handleClosePopup();
+    }
   }
 
   _getTemplate() {
