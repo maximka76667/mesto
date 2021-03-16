@@ -55,6 +55,7 @@ const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
 const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
 const forms = Array.from(document.querySelectorAll('.popup__form'));
 
+
 function openPopup(popup) {
   document.addEventListener('keydown', keyHandler);
   popup.classList.add('popup_opened');
