@@ -1,12 +1,10 @@
 export class Card {
-  constructor (name, link, templateSelector) {
-    this._name = name;
-    this._link = link;
+  constructor (data, templateSelector, handleCardClick) {
+    this._name = data.name;
+    this._link = data.link;
     this._templateSelector = templateSelector;
     this.isLiked = false;
-    this._imgPopup = document.querySelector('.popup_type_image');
-    this._imgPopupTitle = this._imgPopup.querySelector('.popup__title');
-    this._imgPopupImage = this._imgPopup.querySelector('.popup__image');
+    this._handleCardClick = handleCardClick;
   }
 
   _setEventListeners() {
@@ -17,7 +15,7 @@ export class Card {
     this._deleteButton.addEventListener('click', () => this._delete());
 
     this._image = this._element.querySelector('.card__image');
-    this._image.addEventListener('click', () => this._handleOpenPopup());
+    this._image.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 
   _delete() {
@@ -27,28 +25,6 @@ export class Card {
   _like() {
     this.isLiked = !this.isLiked;
     this._likeButton.classList.toggle('card__like-button_active');
-  }
-
-  _handleOpenPopup() {
-    this._imgPopupImage.src = this._link;
-    this._imgPopupImage.alt = this._name;
-    this._imgPopupTitle.textContent = this._name;
-    document.addEventListener('keydown', (event) => this._keyHandler(event));
-    this._imgPopup.classList.add('popup_opened');
-  }
-
-  _handleClosePopup() {
-    this._imgPopup.classList.remove('popup_opened');
-    this._imgPopupImage.src = '';
-    this._imgPopupTitle.textContent = '';
-    this._imgPopupImage.alt = '';
-    document.removeEventListener('keydown', (event) => this._keyHandler(event));
-  }
-
-  _keyHandler(event) {
-    if(event.key == 'Escape') {
-      this._handleClosePopup();
-    }
   }
 
   _getTemplate() {

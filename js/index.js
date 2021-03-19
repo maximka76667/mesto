@@ -35,7 +35,9 @@ const validationConfig = {
   closeButtonSelector: '.popup__close-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__error_visible',
+  editingButtonSelector: '.profile__edit-button',
+  additionButtonSelector: '.profile__add-button'
 }
 
 const editingButton = document.querySelector('.profile__edit-button');
@@ -54,6 +56,9 @@ const cardsContainer = document.querySelector('.cards__container');
 const overlays = Array.from(document.querySelectorAll('.popup__overlay'));
 const closeButtons = Array.from(document.querySelectorAll('.popup__close-button'));
 const forms = Array.from(document.querySelectorAll('.popup__form'));
+const imgPopup = document.querySelector('.popup_type_image');
+const imgPopupTitle = imgPopup.querySelector('.popup__title');
+const imgPopupImage = imgPopup.querySelector('.popup__image');
 
 
 function openPopup(popup) {
@@ -85,6 +90,20 @@ function openAdditionPopup() {
   openPopup(additionPopup);
 }
 
+function handleCardClick(name, link) {
+  imgPopupImage.src = link;
+  imgPopupTitle.textContent = name;
+  openPopup(imgPopup);
+}
+
+// _handleClosePopup() {
+//   this._imgPopup.classList.remove('popup_opened');
+//   this._imgPopupImage.src = '';
+//   this._imgPopupTitle.textContent = '';
+//   this._imgPopupImage.alt = '';
+//   document.removeEventListener('keydown', (event) => this._keyHandler(event));
+// }
+
 function submitEditingForm(event) {
   event.preventDefault();
   
@@ -110,7 +129,7 @@ function submitAdditionForm(event) {
 }
 
 function createCard(cardData) {
-  return new Card(cardData.name, cardData.link, '#card').generateCard();
+  return new Card(cardData, '#card', handleCardClick).generateCard();
 }
 
 function addCard(card) {
@@ -121,19 +140,21 @@ function setCloseEventListeners(element) {
   element.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
 }
 
+function createFormValidator(formElement, openingButtonSelector) {
+  new FormValidator(validationConfig, formElement, openingButtonSelector).enableValidation();
+}
+
 initialCards.forEach((initialCard) => {
   cardsContainer.append(createCard(initialCard));
 });
 
 editingButton.addEventListener('click', openEditingPopup);
-additionButton.addEventListener('click', openAdditionPopup);
-
 editingPopupForm.addEventListener('submit', submitEditingForm);
+createFormValidator(editingPopupForm, validationConfig.editingButtonSelector);
+
+additionButton.addEventListener('click', openAdditionPopup);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
+createFormValidator(additionPopupForm, validationConfig.additionButtonSelector);
 
 overlays.forEach((overlay) => setCloseEventListeners(overlay));
 closeButtons.forEach((closeButton) => setCloseEventListeners(closeButton));
-
-forms.forEach((form) => {
-  new FormValidator(validationConfig, form).enableValidation();
-});

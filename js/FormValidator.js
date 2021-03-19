@@ -1,20 +1,18 @@
 export class FormValidator {
-  constructor(config, formElement) {
+  constructor(config, formElement, openingButtonSelector) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
-    this._closeButtonSelector = config.closeButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
+    this._openingButtonSelector = openingButtonSelector;
     this._formElement = formElement;
   }
 
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector))
     this._submitButtonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._closeButtonElement = this._formElement.closest('.popup').querySelector(this._closeButtonSelector);
-    this._overlay = this._formElement.closest('.popup').querySelector('.popup__overlay');
     
     this._toggleButtonState(this._hasInvalidInput(this._inputList));
 
@@ -29,8 +27,8 @@ export class FormValidator {
       });
     });
 
-    this._closeButtonElement.addEventListener('click', () => this._clearValidation());
-    this._overlay.addEventListener('click', () => this._clearValidation());
+    this._openingButton = document.querySelector(this._openingButtonSelector);
+    this._openingButton.addEventListener('click', () => this._clearValidation());
   }
 
   _toggleButtonState(isValid) {
@@ -76,6 +74,8 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     })
+
+    this._toggleButtonState(true);
   }
 
   enableValidation() {
