@@ -1,0 +1,25 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Проект с фотографиями мест России.  \r У сайта есть адаптивная верстка. Используются flex и grid.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximka76667/mesto.git"
+  },
+  "author": "Maxim Grivennyy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maximka76667/mesto/issues"
+  },
+  "homepage": "https://github.com/maximka76667/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
