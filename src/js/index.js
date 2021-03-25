@@ -1,8 +1,9 @@
 import '../pages/index.css'
 
 
-import { Card } from './Card.js'
-import { FormValidator } from './FormValidator.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
+import Popup from './Popup.js'
 
 const initialCards = [
   {
@@ -63,23 +64,6 @@ const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 
-
-function openPopup(popup) {
-  document.addEventListener('keydown', keyHandler);
-  popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', keyHandler);
-}
-
-function keyHandler(event) {
-  if(event.key == 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
-
 function openEditingPopup() {
   editingPopupName.value = profileName.textContent;
   editingPopupPosition.value = profilePosition.textContent;
@@ -98,14 +82,6 @@ function handleCardClick(name, link) {
   imgPopupTitle.textContent = name;
   openPopup(imgPopup);
 }
-
-// _handleClosePopup() {
-//   this._imgPopup.classList.remove('popup_opened');
-//   this._imgPopupImage.src = '';
-//   this._imgPopupTitle.textContent = '';
-//   this._imgPopupImage.alt = '';
-//   document.removeEventListener('keydown', (event) => this._keyHandler(event));
-// }
 
 function submitEditingForm(event) {
   event.preventDefault();
@@ -137,10 +113,6 @@ function createCard(cardData) {
 
 function addCard(card) {
   cardsContainer.prepend(createCard(card));
-}
-
-function setCloseEventListeners(element) {
-  element.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
 }
 
 function createFormValidator(formElement, openingButtonSelector) {
