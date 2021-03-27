@@ -1,9 +1,11 @@
 import '../pages/index.css'
 
-
+import Section from './Section'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
 import Popup from './Popup.js'
+import PopupWithForm from './PopupWithForm'
+import PopupWithImage from './PopupWithImage'
 
 const initialCards = [
   {
@@ -46,10 +48,9 @@ const validationConfig = {
 
 const editingButton = document.querySelector('.profile__edit-button');
 const additionButton = document.querySelector('.profile__add-button');
-const editingPopup = document.querySelector('.popup_type_editing');
-const editingPopupName = editingPopup.querySelector('.popup__input_type_name');
-const editingPopupPosition = editingPopup.querySelector('.popup__input_type_position');
-const editingPopupForm = editingPopup.querySelector('.popup__form');
+// const editingPopupName = editingPopup.querySelector('.popup__input_type_name');
+// const editingPopupPosition = editingPopup.querySelector('.popup__input_type_position');
+// const editingPopupForm = editingPopup.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__name');
 const profilePosition = document.querySelector('.profile__position');
 const additionPopup = document.querySelector('.popup_type_addition');
@@ -64,23 +65,23 @@ const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 
-function openEditingPopup() {
-  editingPopupName.value = profileName.textContent;
-  editingPopupPosition.value = profilePosition.textContent;
+// function openEditingPopup() {
+//   editingPopupName.value = profileName.textContent;
+//   editingPopupPosition.value = profilePosition.textContent;
 
-  openPopup(editingPopup);
-}
+//   openPopup(editingPopup);
+// }
 
-function openAdditionPopup() {
-  additionPopupForm.reset();
+// function openAdditionPopup() {
+//   additionPopupForm.reset();
 
-  openPopup(additionPopup);
-}
+//   openPopup(additionPopup);
+// }
 
 function handleCardClick(name, link) {
   imgPopupImage.src = link;
   imgPopupTitle.textContent = name;
-  openPopup(imgPopup);
+  popupWithImage.open(name, link);
 }
 
 function submitEditingForm(event) {
@@ -123,13 +124,21 @@ initialCards.forEach((initialCard) => {
   cardsContainer.append(createCard(initialCard));
 });
 
-editingButton.addEventListener('click', openEditingPopup);
+const editingPopup = new Popup('.popup_type_editing');
+console.log(editingPopup);
+
+editingButton.addEventListener('click', () => editingPopup.open());
 editingPopupForm.addEventListener('submit', submitEditingForm);
 createFormValidator(editingPopupForm, validationConfig.editingButtonSelector);
 
-additionButton.addEventListener('click', openAdditionPopup);
+// additionButton.addEventListener('click', openAdditionPopup);
 additionPopupForm.addEventListener('submit', submitAdditionForm);
 createFormValidator(additionPopupForm, validationConfig.additionButtonSelector);
 
-overlays.forEach((overlay) => setCloseEventListeners(overlay));
-closeButtons.forEach((closeButton) => setCloseEventListeners(closeButton));
+// overlays.forEach((overlay) => setCloseEventListeners(overlay));
+// closeButtons.forEach((closeButton) => setCloseEventListeners(closeButton));
+
+const popupWithImage = new PopupWithImage('.popup_type_image');
+
+console.log(popupWithImage._popup);
+console.log(popupWithImage);
