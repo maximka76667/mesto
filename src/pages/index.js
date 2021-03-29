@@ -5,9 +5,9 @@ import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import UserInfo from '../components/UserInfo.js'
 
-import { 
-  initialCards, 
+import { initialCards, 
   validationConfig, 
   editingButton, 
   editingPopupOverlay, 
@@ -17,7 +17,8 @@ import {
   imgPopupTitle, 
   imgPopupOverlay 
 } from '../utils/constants.js'
-import UserInfo from '../components/UserInfo.js'
+
+import { setInputValues } from '../utils/utils.js'
 
 function handleCardClick(name, link) {
   imgPopupImage.src = link;
@@ -31,11 +32,6 @@ function createCard({ name, link }) {
 
 function createFormValidator(formElement, openingButtonSelector) {
   new FormValidator(validationConfig, formElement, openingButtonSelector).enableValidation();
-}
-
-function setInputValues({ name, position }, popupSelector) {
-  document.querySelector(`${popupSelector} .popup__input_type_name`).value = name;
-  document.querySelector(`${popupSelector} .popup__input_type_position`).value = position;
 }
 
 // UserInfo
@@ -58,11 +54,10 @@ createFormValidator(editingPopupForm, validationConfig.editingButtonSelector);
 // Addition Popup
 const additionPopup = new PopupWithForm('.popup_type_addition', ({ placeName, placeLink }) => {
   additionPopup.close();
-
   const cardElement = createCard({ name: placeName, link: placeLink });
-
   cardList.addItem(cardElement);
 });
+
 additionPopup.setEventListeners();
 
 additionButton.addEventListener('click', () => additionPopup.open());
