@@ -10,11 +10,15 @@ export default class Section {
   renderItems() {
     this._initialArray.forEach(element => {
       const cardElement = new Card(element, '#card', this._handleCardClick).generateCard();
-      this.setItem(cardElement);
+      this.renderItem(cardElement);
     });
   }
 
-  setItem(element) {
+  renderItem(element) {
     this._container.append(element);
+  }
+
+  addItem(element) {
+    this._container.prepend(element);
   }
 } 
