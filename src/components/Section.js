@@ -1,7 +1,5 @@
-import Card from "./Card";
-
 export default class Section {
-  constructor({ data, renderer }, containerSelector, handleCardClick) {
+  constructor({ data, renderer }, containerSelector) {
     this._initialArray = data;
     this._container = document.querySelector(containerSelector);
     this._renderer = renderer;

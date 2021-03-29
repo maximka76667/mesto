@@ -1,13 +1,23 @@
 import './index.css'
 
-import Section from '../components/Section'
+import Section from '../components/Section.js'
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
-import PopupWithForm from '../components/PopupWithForm'
-import PopupWithImage from '../components/PopupWithImage'
+import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithImage from '../components/PopupWithImage.js'
 
-import { initialCards, validationConfig, editingButton, additionButton, imgPopupImage, imgPopupTitle } from '../utils/constants.js'
-import UserInfo from '../components/UserInfo'
+import { 
+  initialCards, 
+  validationConfig, 
+  editingButton, 
+  editingPopupOverlay, 
+  additionButton, 
+  additionPopupOverlay, 
+  imgPopupImage, 
+  imgPopupTitle, 
+  imgPopupOverlay 
+} from '../utils/constants.js'
+import UserInfo from '../components/UserInfo.js'
 
 function handleCardClick(name, link) {
   imgPopupImage.src = link;
@@ -42,7 +52,6 @@ editingButton.addEventListener('click', () => {
   setInputValues(userInfo.getUserInfo(), '.popup_type_editing');
   editingPopup.open();
 });
-const editingPopupOverlay = document.querySelector('.popup_type_editing .popup__overlay')
 editingPopupOverlay.addEventListener('click', () => editingPopup.close());
 createFormValidator(editingPopupForm, validationConfig.editingButtonSelector);
 
@@ -57,7 +66,6 @@ const additionPopup = new PopupWithForm('.popup_type_addition', ({ placeName, pl
 additionPopup.setEventListeners();
 
 additionButton.addEventListener('click', () => additionPopup.open());
-const additionPopupOverlay = document.querySelector('.popup_type_addition .popup__overlay');
 additionPopupOverlay.addEventListener('click', () => additionPopup.close());
 createFormValidator(additionPopupForm, validationConfig.additionButtonSelector);
 
@@ -65,7 +73,6 @@ createFormValidator(additionPopupForm, validationConfig.additionButtonSelector);
 const popupWithImage = new PopupWithImage('.popup_type_image');
 popupWithImage.setEventListeners();
 
-const imgPopupOverlay = document.querySelector('.popup_type_image .popup__overlay')
 imgPopupOverlay.addEventListener('click', () => popupWithImage.close());
 
 const cardList = new Section({ 
@@ -75,4 +82,5 @@ const cardList = new Section({
     cardList.renderItem(cardElement);
   }
 }, '.cards__container', handleCardClick);
+
 cardList.renderItems();
