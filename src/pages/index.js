@@ -68,5 +68,11 @@ popupWithImage.setEventListeners();
 const imgPopupOverlay = document.querySelector('.popup_type_image .popup__overlay')
 imgPopupOverlay.addEventListener('click', () => popupWithImage.close());
 
-const cardList = new Section({ data: initialCards }, '.cards__container', handleCardClick);
+const cardList = new Section({ 
+  data: initialCards,
+  renderer: (element) => {
+    const cardElement = new Card(element, '#card', handleCardClick).generateCard();
+    cardList.renderItem(cardElement);
+  }
+}, '.cards__container', handleCardClick);
 cardList.renderItems();
