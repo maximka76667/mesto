@@ -38,16 +38,11 @@ const validationConfig = {
 }
 
 const editingButton = document.querySelector('.profile__edit-button');
-const editingPopup = document.querySelector('.popup_type_editing');
-const editingPopupOverlay = editingPopup.querySelector('.popup__overlay');
 
 const additionButton = document.querySelector('.profile__add-button');
-const additionPopup = document.querySelector('.popup_type_addition');
-const additionPopupOverlay = additionPopup.querySelector('.popup__overlay');
 
 const imgPopup = document.querySelector('.popup_type_image');
-const imgPopupOverlay = imgPopup.querySelector('.popup__overlay');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 
-export { initialCards, validationConfig, editingButton, editingPopupOverlay, additionButton, additionPopupOverlay, imgPopupImage, imgPopupTitle, imgPopupOverlay }
+export { initialCards, validationConfig, editingButton, additionButton, imgPopupImage, imgPopupTitle }
