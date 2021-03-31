@@ -1,5 +1,5 @@
 export default class Card {
-  constructor ({ name, link }, templateSelector, handleCardClick) {
+  constructor({ name, link }, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
@@ -15,7 +15,9 @@ export default class Card {
     this._deleteButton.addEventListener('click', () => this._delete());
 
     this._image = this._element.querySelector('.card__image');
-    this._image.addEventListener('click', () => this._handleCardClick(this._name, this._link));
+    this._image.addEventListener('click', () =>
+      this._handleCardClick(this._name, this._link)
+    );
   }
 
   _delete() {
@@ -29,10 +31,9 @@ export default class Card {
 
   _getTemplate() {
     const cardElement = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
+      .querySelector(this._templateSelector)
+      .content.querySelector('.card')
+      .cloneNode(true);
 
     return cardElement;
   }

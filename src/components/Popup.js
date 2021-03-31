@@ -15,13 +15,17 @@ export default class Popup {
   }
 
   _handleEscClose(event) {
-    if(event.key == 'Escape') {
+    if (event.key == 'Escape') {
       this.close();
     }
   }
 
   setEventListeners() {
-    this._popup.querySelector('.popup__close-button').addEventListener('click', () => this.close());
-    this._popup.querySelector('.popup__overlay').addEventListener('click', () => this.close());
+    this._popup
+      .querySelector('.popup__close-button')
+      .addEventListener('click', () => this.close());
+    this._popup
+      .querySelector('.popup__overlay')
+      .addEventListener('click', () => this.close());
   }
 }

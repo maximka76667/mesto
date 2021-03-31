@@ -1,84 +1,121 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto Russia</title>
-</head>
-<body class="page">
-  <header class="header">
-    <div class="header__container">
-      <a href="#" class="logo" target="_blank"></a>
-    </div>
-  </header>
-  <div class="profile">
-    <div class="profile__container">
-      <img src="<%=require('./images/profile-avatar.jpg')%>" class="profile__avatar" alt="Аватар профиля">
-      <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" type="button"></button>
-        <p class="profile__position">Исследователь океана</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto Russia</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <div class="header__container">
+        <a href="#" class="logo" target="_blank"></a>
       </div>
-      <button class="profile__add-button" type="button"></button>
-    </div>
-  </div>
-  <div class="cards">
-    <div class="cards__container">
-      
-    </div>
-  </div>
-  <footer class="footer">
-    <div class="footer__container">
-      <p class="footer__copyright">© 2020. Максим Гривенный</p>
-    </div>
-  </footer>
-  <template id="card">
-    <article class="card">
-      <img src="./" alt="Фото карточки" class="card__image">
-      <button class="card__delete-button"></button>
-      <div class="card__info">
-        <h2 class="card__title"></h2>
-        <button class="card__like-button" type="button"></button>
+    </header>
+    <div class="profile">
+      <div class="profile__container">
+        <img
+          src="<%=require('./images/profile-avatar.jpg')%>"
+          class="profile__avatar"
+          alt="Аватар профиля"
+        />
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button" type="button"></button>
+          <p class="profile__position">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button" type="button"></button>
       </div>
-    </article>
-  </template>
-  <div class="popup popup_type_editing">
-    <div class="popup__overlay"></div>
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="editingPopupForm" novalidate>
-        <input class="popup__input popup__input_type_name" type="text" name="profileName" id="profileName" placeholder="Ваше имя" minlength="2" maxlength="40" required>
-        <span class="popup__error" id="profileName-error"></span>
-        <input class="popup__input popup__input_type_position" type="text" name="profilePosition" id="profilePosition" placeholder="Ваша должность" minlength="2" maxlength="200" required>
-        <span class="popup__error" id="profilePosition-error"></span>
-        <button class="popup__submit-button" type="submit">Сохранить</button>
-      </form>
-      <button class="popup__close-button" type="button"></button>
     </div>
-  </div>
+    <div class="cards">
+      <div class="cards__container"></div>
+    </div>
+    <footer class="footer">
+      <div class="footer__container">
+        <p class="footer__copyright">© 2020. Максим Гривенный</p>
+      </div>
+    </footer>
+    <template id="card">
+      <article class="card">
+        <img src="./" alt="Фото карточки" class="card__image" />
+        <button class="card__delete-button"></button>
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button class="card__like-button" type="button"></button>
+        </div>
+      </article>
+    </template>
+    <div class="popup popup_type_editing">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="editingPopupForm" novalidate>
+          <input
+            class="popup__input popup__input_type_name"
+            type="text"
+            name="profileName"
+            id="profileName"
+            placeholder="Ваше имя"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="popup__error" id="profileName-error"></span>
+          <input
+            class="popup__input popup__input_type_position"
+            type="text"
+            name="profilePosition"
+            id="profilePosition"
+            placeholder="Ваша должность"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="popup__error" id="profilePosition-error"></span>
+          <button class="popup__submit-button" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
+      </div>
+    </div>
 
-  <div class="popup popup_type_addition">
-    <div class="popup__overlay"></div>
-    <div class="popup__container">
-      <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="additionPopupForm" novalidate>
-        <input class="popup__input popup__input_type_name" type="text" name="placeName" id="placeName" placeholder="Название" minlength="2" maxlength="30" required>
-        <span class="popup__error" id="placeName-error"></span>
-        <input class="popup__input popup__input_type_link" type="url" name="placeLink" id="placeLink" placeholder="Ссылка на картинку" minlength="2" required>
-        <span class="popup__error" id="placeLink-error"></span>
-        <button class="popup__submit-button" type="submit">Создать</button>
-      </form>
-      <button class="popup__close-button" type="button"></button>
+    <div class="popup popup_type_addition">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="additionPopupForm" novalidate>
+          <input
+            class="popup__input popup__input_type_name"
+            type="text"
+            name="placeName"
+            id="placeName"
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <span class="popup__error" id="placeName-error"></span>
+          <input
+            class="popup__input popup__input_type_link"
+            type="url"
+            name="placeLink"
+            id="placeLink"
+            placeholder="Ссылка на картинку"
+            minlength="2"
+            required
+          />
+          <span class="popup__error" id="placeLink-error"></span>
+          <button class="popup__submit-button" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
+      </div>
     </div>
-  </div>
-  
-  <div class="popup popup_type_image">
-    <div class="popup__overlay popup__overlay_type_image"></div>
-    <div class="popup__container popup__container_type_image">
-      <img src="./" alt="Фото карточки" class="popup__image">
-      <h2 class="popup__title popup__title_type_image"></h2>
-      <button class="popup__close-button" type="button"></button>
+
+    <div class="popup popup_type_image">
+      <div class="popup__overlay popup__overlay_type_image"></div>
+      <div class="popup__container popup__container_type_image">
+        <img src="./" alt="Фото карточки" class="popup__image" />
+        <h2 class="popup__title popup__title_type_image"></h2>
+        <button class="popup__close-button" type="button"></button>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
