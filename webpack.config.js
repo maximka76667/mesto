@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const { postcss } = require('autoprefixer');
+const PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
   entry: { main: './src/pages/index.js' },
@@ -44,5 +45,14 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new PrettierPlugin({
+      printWidth: 80,               // Specify the length of line that the printer will wrap on.
+      tabWidth: 2,                  // Specify the number of spaces per indentation-level.
+      useTabs: false,               // Indent lines with tabs instead of spaces.
+      semi: true,                   // Print semicolons at the ends of statements.
+      encoding: 'utf-8',            // Which encoding scheme to use on files
+      extensions: [ ".js", "css", ".html" ],
+      singleQuote: true,
+    })
   ]
 };

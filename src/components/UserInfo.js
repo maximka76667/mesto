@@ -5,7 +5,10 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    return { name: this._profileName.textContent, position: this._profilePosition.textContent }
+    return {
+      name: this._profileName.textContent,
+      position: this._profilePosition.textContent,
+    };
   }
 
   setUserInfo(name, position) {
