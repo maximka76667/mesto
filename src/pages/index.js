@@ -14,6 +14,9 @@ import {
   additionButton,
   imgPopupImage,
   imgPopupTitle,
+  avatar,
+  profileName,
+  profilePosition,
 } from '../utils/constants.js';
 
 import { setInputValues } from '../utils/utils.js';
@@ -72,6 +75,31 @@ createFormValidator(additionPopupForm, validationConfig.additionButtonSelector);
 const popupWithImage = new PopupWithImage('.popup_type_image');
 popupWithImage.setEventListeners();
 
+// Avatar Popup
+
+const avatarPopup = new PopupWithForm(
+  '.popup_type_avatar',
+  ({ avatarLink }) => {
+    avatar.querySelector('.profile__avatar-image').src = avatarLink;
+    avatarPopup.close();
+  }
+);
+avatarPopup.setEventListeners();
+
+avatar.addEventListener('click', () => {
+  avatarPopup.open();
+  console.log('123');
+});
+createFormValidator(avatarPopupForm, validationConfig.avatarSelector);
+
+// Removing Popup
+
+const removingPopup = new PopupWithForm('.popup_type_remove', () => {
+  removingPopup.close();
+});
+removingPopup.setEventListeners();
+
+// Card List
 const cardList = new Section(
   {
     data: initialCards,
@@ -89,3 +117,26 @@ const cardList = new Section(
 );
 
 cardList.renderItems();
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-22/cards', {
+  headers: {
+    authorization: '6e0d021d-4f3f-452d-8c82-5a27e9592d29',
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-22/users/me', {
+  headers: {
+    authorization: '6e0d021d-4f3f-452d-8c82-5a27e9592d29',
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+    avatar.src = result.avatar;
+    profileName.textContent = result.name;
+    profilePosition.textContent = result.about;
+  });
