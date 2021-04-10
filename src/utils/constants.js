@@ -41,6 +41,7 @@ const validationConfig = {
   errorClass: 'popup__error_visible',
   editingButtonSelector: '.profile__edit-button',
   additionButtonSelector: '.profile__add-button',
+  avatarSelector: '.profile__avatar',
 };
 
 const editingButton = document.querySelector('.profile__edit-button');
@@ -51,6 +52,11 @@ const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 
+const profile = document.querySelector('.profile__container');
+const avatar = profile.querySelector(validationConfig.avatarSelector);
+const profileName = profile.querySelector('.profile__name');
+const profilePosition = profile.querySelector('.profile__position');
+
 export {
   initialCards,
   validationConfig,
@@ -58,4 +64,7 @@ export {
   additionButton,
   imgPopupImage,
   imgPopupTitle,
+  avatar,
+  profileName,
+  profilePosition,
 };
