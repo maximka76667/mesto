@@ -6,9 +6,9 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 import {
-  initialCards,
   validationConfig,
   editingButton,
   additionButton,
@@ -27,8 +27,11 @@ function handleCardClick(name, link) {
   popupWithImage.open(name, link);
 }
 
-function createCard({ name, link }) {
-  return new Card({ name, link }, '#card', handleCardClick).generateCard();
+function createCard(data) {
+  const card = new Card(data, '#card', handleCardClick, () => {
+    removingPopup.open();
+  }).generateCard();
+  return card;
 }
 
 function createFormValidator(formElement, openingButtonSelector) {
@@ -48,6 +51,7 @@ const editingPopup = new PopupWithForm(
   ({ profileName, profilePosition }) => {
     editingPopup.close();
     userInfo.setUserInfo(profileName, profilePosition);
+    api.setProfileInfo({ profileName, profilePosition });
   }
 );
 editingPopup.setEventListeners();
@@ -64,6 +68,7 @@ const additionPopup = new PopupWithForm(
   ({ placeName, placeLink }) => {
     const cardElement = createCard({ name: placeName, link: placeLink });
     cardList.addItem(cardElement);
+    api.addCard({ name: placeName, link: placeLink });
     additionPopup.close();
   }
 );
@@ -88,7 +93,6 @@ avatarPopup.setEventListeners();
 
 avatar.addEventListener('click', () => {
   avatarPopup.open();
-  console.log('123');
 });
 createFormValidator(avatarPopupForm, validationConfig.avatarSelector);
 
@@ -99,44 +103,39 @@ const removingPopup = new PopupWithForm('.popup_type_remove', () => {
 });
 removingPopup.setEventListeners();
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-22',
+  headers: {
+    authorization: '6e0d021d-4f3f-452d-8c82-5a27e9592d29',
+    'Content-Type': 'application/json',
+  },
+});
+
 // Card List
+
 const cardList = new Section(
-  {
-    data: initialCards,
-    renderer: (element) => {
-      const cardElement = new Card(
-        element,
-        '#card',
-        handleCardClick
-      ).generateCard();
-      cardList.renderItem(cardElement);
-    },
+  (element) => {
+    const cardElement = new Card(element, '#card', handleCardClick, () => {
+      removingPopup.open();
+      api.removeCard(cardElement.getId()).then(() => cardElement.removeCard());
+    }).generateCard();
+    cardList.renderItem(cardElement);
   },
   '.cards__container',
   handleCardClick
 );
 
-cardList.renderItems();
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-22/cards', {
-  headers: {
-    authorization: '6e0d021d-4f3f-452d-8c82-5a27e9592d29',
-  },
-})
-  .then((res) => res.json())
+api
+  .getProfileInfo()
   .then((result) => {
-    console.log(result);
-  });
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-22/users/me', {
-  headers: {
-    authorization: '6e0d021d-4f3f-452d-8c82-5a27e9592d29',
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
     avatar.src = result.avatar;
     profileName.textContent = result.name;
     profilePosition.textContent = result.about;
+  })
+  .catch((err) => {
+    console.log(err);
   });
+
+api.getInitialCards().then((res) => {
+  cardList.renderItems(res);
+});
