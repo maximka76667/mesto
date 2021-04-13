@@ -9,16 +9,7 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject('Ошибка');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   }
 
   setProfileInfo(data) {
@@ -32,15 +23,7 @@ export default class Api {
         name: data.profileName,
         about: data.profilePosition,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject('Ошибка');
-      })
-      .catch((err) => console.log(err));
+    });
   }
 
   getProfileInfo() {
@@ -54,14 +37,15 @@ export default class Api {
         if (res.ok) {
           return res.json();
         }
-
         return Promise.reject('Ошибка');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   addCard(data) {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-22/cards', {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
         authorization: this._token,
@@ -71,11 +55,6 @@ export default class Api {
         name: data.name,
         link: data.link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Ошибка');
     });
   }
   // addMessage(data) {
@@ -108,20 +87,24 @@ export default class Api {
   // }
 
   removeCard(id) {
-    console.log(id);
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token,
       },
-    })
-      .then((res) =>
-        res.ok
-          ? Promise.resolve('Успех')
-          : Promise.reject(`Ошибка ${res.status}`)
-      )
-      .catch((err) => {
-        console.log(err);
-      });
+    });
+  }
+
+  changeAvatar(avatarLink) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        avatar: avatarLink,
+      }),
+    });
   }
 }

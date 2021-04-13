@@ -53,7 +53,8 @@ const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 
 const profile = document.querySelector('.profile__container');
-const avatar = profile.querySelector(validationConfig.avatarSelector);
+const avatar = profile.querySelector('.profile__avatar');
+const avatarImage = profile.querySelector('.profile__avatar-image');
 const profileName = profile.querySelector('.profile__name');
 const profilePosition = profile.querySelector('.profile__position');
 
@@ -65,6 +66,7 @@ export {
   imgPopupImage,
   imgPopupTitle,
   avatar,
+  avatarImage,
   profileName,
   profilePosition,
 };

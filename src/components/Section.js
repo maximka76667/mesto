@@ -17,4 +17,8 @@ export default class Section {
   addItem(element) {
     this._container.prepend(element);
   }
+
+  removeCard(id) {
+    document.querySelector(`.card[data-id='${id}']`).remove();
+  }
 }

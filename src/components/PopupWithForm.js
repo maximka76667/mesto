@@ -36,4 +36,16 @@ export default class PopupWithForm extends Popup {
         this._submitForm(this._getInputValues());
       });
   }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._popup
+        .querySelector('.popup__submit-button')
+        .classList.add('popup__submit-button_loading');
+    } else {
+      this._popup
+        .querySelector('.popup__submit-button')
+        .classList.remove('popup__submit-button_loading');
+    }
+  }
 }

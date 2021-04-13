@@ -62,3 +62,4 @@
 @import url(../blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_image.css);
+@import url(../blocks/popup/__submit-button/_loading/popup__submit-button_loading.css);
