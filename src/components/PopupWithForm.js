@@ -5,6 +5,8 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._popup = document.querySelector(popupSelector);
     this._submitForm = submitForm;
+    this._submitButton = this._popup.querySelector('.popup__submit-button');
+    this._submitButtonTextDefault = this._submitButton.textContent;
   }
 
   close() {
@@ -39,13 +41,9 @@ export default class PopupWithForm extends Popup {
 
   renderLoading(isLoading) {
     if (isLoading) {
-      this._popup
-        .querySelector('.popup__submit-button')
-        .classList.add('popup__submit-button_loading');
+      this._submitButton.textContent = 'Загрузка...';
     } else {
-      this._popup
-        .querySelector('.popup__submit-button')
-        .classList.remove('popup__submit-button_loading');
+      this._submitButton.textContent = this._submitButtonTextDefault;
     }
   }
 }

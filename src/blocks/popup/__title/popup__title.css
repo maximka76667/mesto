@@ -12,3 +12,7 @@
     margin-bottom: 75px;
   }
 }
+
+.popup_type_remove .popup__title {
+  margin: 0 0 21px;
+}

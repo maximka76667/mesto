@@ -9,7 +9,15 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
   }
 
   setProfileInfo(data) {
@@ -23,7 +31,15 @@ export default class Api {
         name: data.profileName,
         about: data.profilePosition,
       }),
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
   }
 
   getProfileInfo() {
@@ -55,36 +71,16 @@ export default class Api {
         name: data.name,
         link: data.link,
       }),
-    });
-  }
-  // addMessage(data) {
-  //   return fetch(`${this._address}/messages`, {
-  //       method: 'POST',
-  //       headers: {
-  //           authorization: this._token,
-  //           'Content-type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //           user: data.user,
-  //           message: data.message
-  //       })
-  //   })
-  //       .then(response => response.ok
-  //           ? response.json()
-  //           : Promise.reject(`Ошибка ${response.status}`))
-  // }
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
 
-  // removeMessage(id) {
-  //   return fetch(`${this._address}/messages/${id}`, {
-  //       method: 'DELETE',
-  //       headers: {
-  //           authorization: this._token
-  //       }
-  //   })
-  //       .then(response => response.ok
-  //           ? Promise.resolve('success')
-  //           : Promise.reject(`Ошибка ${response.status}`))
-  // }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
+  }
 
   removeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
@@ -92,7 +88,49 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  like(card) {
+    return fetch(`${this._baseUrl}/cards/likes/${card._id}`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._token,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  dislike(card) {
+    return fetch(`${this._baseUrl}/cards/likes/${card._id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
   }
 
   changeAvatar(avatarLink) {
@@ -105,6 +143,14 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatarLink,
       }),
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => console.log(err));
   }
 }

@@ -35,10 +35,38 @@ function handleCardRemoving(card) {
   tempCard = card;
 }
 
+function cardLike(card) {
+  if (card.isLiked) {
+    api
+      .dislike(card)
+      .then((res) => {
+        card.isLiked = !card.isLiked;
+        card._likeButton.classList.remove('card__like-button_active');
+        card._element.querySelector('.card__likes-count').textContent =
+          res.likes.length;
+      })
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .like(card)
+      .then((res) => {
+        card.isLiked = !card.isLiked;
+        card._likeButton.classList.add('card__like-button_active');
+        card._element.querySelector('.card__likes-count').textContent =
+          res.likes.length;
+      })
+      .catch((err) => console.log(err));
+  }
+}
+
 function createCard(data) {
-  const card = new Card(data, '#card', handleCardClick, (card) => {
-    handleCardRemoving(card);
-  }).generateCard();
+  const card = new Card(
+    data,
+    '#card',
+    handleCardClick,
+    handleCardRemoving,
+    cardLike
+  ).generateCard();
   return card;
 }
 
@@ -50,8 +78,6 @@ function createFormValidator(formElement, openingButtonSelector) {
   ).enableValidation();
 }
 
-function cardLike() {}
-
 // UserInfo
 const userInfo = new UserInfo('.profile__name', '.profile__position');
 
@@ -62,13 +88,9 @@ const editingPopup = new PopupWithForm(
     editingPopup.renderLoading(true);
     api
       .setProfileInfo({ profileName, profilePosition })
-      .then((res) => {
-        if (res.ok) {
-          userInfo.setUserInfo(profileName, profilePosition);
-          editingPopup.close();
-          return Promise.resolve('Успех');
-        }
-        Promise.reject(res.status);
+      .then(() => {
+        userInfo.setUserInfo(profileName, profilePosition);
+        editingPopup.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -91,12 +113,6 @@ const additionPopup = new PopupWithForm(
     additionPopup.renderLoading(true);
     api
       .addCard({ name: placeName, link: placeLink })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject('Ошибка' + res.status);
-      })
       .then((result) => {
         const cardElement = createCard(result);
         cardList.addItem(cardElement);
@@ -124,13 +140,9 @@ const avatarPopup = new PopupWithForm(
     avatarPopup.renderLoading(true);
     api
       .changeAvatar(avatarLink)
-      .then((res) => {
-        if (res.ok) {
-          avatarImage.src = avatarLink;
-          avatarPopup.close();
-          return Promise.resolve('Успех');
-        }
-        return Promise.reject(res);
+      .then(() => {
+        avatarImage.src = avatarLink;
+        avatarPopup.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -151,13 +163,9 @@ const removingPopup = new PopupWithForm('.popup_type_remove', () => {
   removingPopup.renderLoading(true);
   api
     .removeCard(tempCard.dataset.id)
-    .then((res) => {
-      if (res.ok) {
-        removingPopup.close();
-        cardList.removeCard(tempCard.dataset.id);
-        return Promise.resolve('Успех');
-      }
-      return Promise.reject(res.status);
+    .then(() => {
+      removingPopup.close();
+      cardList.removeCard(tempCard.dataset.id);
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -192,18 +200,10 @@ api
     profileName.textContent = result.name;
     profilePosition.textContent = result.about;
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => console.log(err));
 
 api
   .getInitialCards()
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    Promise.reject('Ошибка');
-  })
   .then((result) => {
     cardList.renderItems(result);
   })
