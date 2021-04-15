@@ -26,7 +26,7 @@ export default class Card {
     this._likeButton.addEventListener('click', () => this._cardLike(this));
 
     this._deleteButton = this._element.querySelector('.card__delete-button');
-    if (this._ownerId == '72db3d92fc8d79fed59d83b8') {
+    if (this._ownerId == this._myId) {
       this._deleteButton.addEventListener('click', () => {
         this._handleCardRemoving(this._element);
       });
