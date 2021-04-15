@@ -4,14 +4,15 @@ export default class Card {
     templateSelector,
     handleCardClick,
     handleCardRemoving,
-    cardLike
+    cardLike,
+    userId
   ) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes ? data.likes.length : 0;
     this._likers = data.likes;
     this._id = data._id;
-    this._myId = '72db3d92fc8d79fed59d83b8';
+    this._myId = userId;
     this._ownerId = data.owner ? data.owner._id : this._myId;
     this.isLiked = false;
     this._templateSelector = templateSelector;
@@ -37,6 +38,13 @@ export default class Card {
     this._image.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
+  }
+
+  updateLikes(res) {
+    this.isLiked = !this.isLiked;
+    this._likeButton.classList.toggle('card__like-button_active');
+    this._element.querySelector('.card__likes-count').textContent =
+      res.likes.length;
   }
 
   _getTemplate() {

@@ -42,19 +42,26 @@ const validationConfig = {
   editingButtonSelector: '.profile__edit-button',
   additionButtonSelector: '.profile__add-button',
   avatarSelector: '.profile__avatar',
+  avatarImageSelector: '.profile__avatar-image',
+  profileNameSelector: '.profile__name',
+  profileAboutSelector: '.profile__position',
 };
 
-const editingButton = document.querySelector('.profile__edit-button');
+const editingButton = document.querySelector(
+  validationConfig.editingButtonSelector
+);
 
-const additionButton = document.querySelector('.profile__add-button');
+const additionButton = document.querySelector(
+  validationConfig.additionButtonSelector
+);
 
 const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 const imgPopupImage = imgPopup.querySelector('.popup__image');
 
 const profile = document.querySelector('.profile__container');
-const avatar = profile.querySelector('.profile__avatar');
-const avatarImage = profile.querySelector('.profile__avatar-image');
+const avatar = profile.querySelector(validationConfig.avatarSelector);
+const avatarImage = profile.querySelector(validationConfig.avatarImageSelector);
 const profileName = profile.querySelector('.profile__name');
 const profilePosition = profile.querySelector('.profile__position');
 
